@@ -1,159 +1,46 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#111827" />
-  <title>NEXUS — Your day. Your focus. Your rules.</title>
-  <meta name="description" content="NEXUS es tu centro personal para tareas, enfoque, notas e inspiración." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
+<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEXUS</title><meta name="theme-color" content="#090d14"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet"><script src="https://unpkg.com/lucide@0.468.0"></script><link rel="stylesheet" href="styles.css"></head><body>
+<div class="scene">
+<aside class="sidebar">
+<div class="brand"><div class="logo"><i data-lucide="mountain"></i></div><span>NEXUS</span></div>
+<nav>
+<button class="nav active" data-view="home"><i data-lucide="home"></i><span>Inicio</span></button>
+<button class="nav" data-view="tasks"><i data-lucide="list-checks"></i><span>Tareas</span></button>
+<button class="nav" data-view="focus"><i data-lucide="gauge"></i><span>Enfoque</span></button>
+<button class="nav" data-view="music"><i data-lucide="music-2"></i><span>Música</span></button>
+<button class="nav" data-view="notes"><i data-lucide="notebook-tabs"></i><span>Notas</span></button>
+<button class="nav" data-view="time"><i data-lucide="clock-3"></i><span>Tiempo</span></button>
+<button class="nav" data-view="inspire"><i data-lucide="lightbulb"></i><span>Inspiración</span></button>
+</nav>
+<div class="sidebar-bottom"><div class="mini-card"><div class="thumb"></div><div><strong>Un mejor yo</strong><small>Proceso diario</small></div><i data-lucide="chevron-right"></i></div><small class="version">v1.1.0</small></div>
+</aside>
 
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark">N</div>
-        <div><strong>NEXUS</strong><span>Your day. Your rules.</span></div>
-      </div>
+<main class="content">
+<section id="home" class="view active">
+<div class="greeting"><h1>Hola, Alan.</h1><p>Disciplina hoy, resultados mañana.</p></div>
+<div class="task-panel glass">
+<div class="panel-title"><h2>Tus tareas de hoy</h2><button id="addTaskBtn"><i data-lucide="plus"></i>Nueva tarea</button></div>
+<form id="taskForm" class="task-form hidden"><input id="taskInput" placeholder="Nueva tarea"><button>Añadir</button></form>
+<div id="taskList" class="task-list"></div>
+</div>
+<div class="weather-block"><div id="dateText" class="date"></div><div id="clock" class="clock"></div><div class="weather-line"><span>🌤️</span><div><strong>16°C</strong><small>Maldonado</small></div></div></div>
 
-      <nav id="nav">
-        <button class="nav-item active" data-view="home">⌂ <span>Inicio</span></button>
-        <button class="nav-item" data-view="tasks">✓ <span>Tareas</span></button>
-        <button class="nav-item" data-view="focus">◷ <span>Enfoque</span></button>
-        <button class="nav-item" data-view="notes">✎ <span>Notas</span></button>
-        <button class="nav-item" data-view="inspire">✦ <span>Inspiración</span></button>
-      </nav>
+<div class="music-card glass">
+<div class="album"></div><div class="track"><h3>Better Days</h3><p>Lofi Vibes</p><div class="bar"><span></span></div><div class="times"><span>1:12</span><span>2:34</span></div></div><button class="heart"><i data-lucide="heart"></i></button>
+<div class="controls"><button><i data-lucide="shuffle"></i></button><button><i data-lucide="skip-back"></i></button><button class="play" id="playBtn"><i data-lucide="pause"></i></button><button><i data-lucide="skip-forward"></i></button><button><i data-lucide="repeat-2"></i></button></div>
+</div>
 
-      <div class="sidebar-bottom">
-        <div class="mini-status"><span class="dot"></span> Guardado local</div>
-        <button id="themeToggle" class="icon-btn" title="Cambiar apariencia">☼</button>
-      </div>
-    </aside>
+<div class="quote glass"><p>“La motivación te inicia.<br><em>La disciplina te mantiene.</em>”</p></div>
+<div class="hand-note top">“Grandes cosas<br>nacen de la constancia.”</div>
+<div class="hand-note side">IDEAS<br>PLAN<br>FOCUS<br>DISCIPLINA<br>RESULTADOS</div>
+<div class="hand-note bottom">Misma persona.<br><strong>Mejores hábitos.</strong></div>
+<div class="tiny-copy">Un día mejor<br>también se construye<br>con pequeños pasos.</div>
+</section>
 
-    <main>
-      <header class="topbar">
-        <div>
-          <p id="dateLabel" class="eyebrow"></p>
-          <h1 id="greeting">Hola, Alan.</h1>
-          <p class="subtitle">Haz que hoy cuente.</p>
-        </div>
-        <div class="clock-card">
-          <strong id="clock">--:--</strong>
-          <span>Montevideo</span>
-        </div>
-      </header>
-
-      <section id="home" class="view active">
-        <div class="hero-grid">
-          <article class="panel focus-preview">
-            <div class="panel-head">
-              <div><p class="eyebrow">FOCUS SESSION</p><h2 id="focusPreview">25:00</h2></div>
-              <button class="primary small" id="quickFocus">Empezar</button>
-            </div>
-            <div class="progress"><span id="focusProgress"></span></div>
-            <p class="muted">Un bloque. Una tarea. Cero ruido.</p>
-          </article>
-
-          <article class="panel quote-card">
-            <p class="eyebrow">IMPULSO DEL DÍA</p>
-            <blockquote id="quoteText"></blockquote>
-            <button id="newQuote" class="text-btn">Otra frase →</button>
-          </article>
-        </div>
-
-        <div class="dashboard-grid">
-          <article class="panel tasks-card">
-            <div class="panel-head">
-              <div><p class="eyebrow">HOY</p><h3>Prioridades</h3></div>
-              <button class="icon-btn" id="openTaskInput">＋</button>
-            </div>
-            <form id="quickTaskForm" class="quick-add hidden">
-              <input id="quickTaskInput" placeholder="Nueva tarea..." autocomplete="off" />
-              <button class="primary">Añadir</button>
-            </form>
-            <div id="homeTaskList" class="task-list"></div>
-            <button class="text-btn" data-go="tasks">Ver todas →</button>
-          </article>
-
-          <article class="panel stat-card">
-            <p class="eyebrow">PROGRESO</p>
-            <div class="big-stat"><strong id="completionPercent">0%</strong><span>completado</span></div>
-            <div class="progress"><span id="taskProgress"></span></div>
-            <div class="stat-row"><span>Tareas listas</span><strong id="doneCount">0 / 0</strong></div>
-          </article>
-
-          <article class="panel note-preview">
-            <div class="panel-head"><div><p class="eyebrow">CAPTURA RÁPIDA</p><h3>Notas</h3></div><span>✎</span></div>
-            <textarea id="scratchpad" placeholder="Escribe algo antes de olvidarlo..."></textarea>
-            <p class="save-indicator" id="saveIndicator">Guardado automáticamente</p>
-          </article>
-
-          <article class="panel mantra-card">
-            <div class="orb">✦</div>
-            <p>Tu espacio. Tu ritmo.</p>
-            <h3>Haz menos.<br/>Hazlo mejor.</h3>
-          </article>
-        </div>
-      </section>
-
-      <section id="tasks" class="view">
-        <div class="section-title"><div><p class="eyebrow">ORGANIZA</p><h2>Tareas</h2></div><span id="taskSummary"></span></div>
-        <article class="panel">
-          <form id="taskForm" class="task-form">
-            <input id="taskInput" placeholder="¿Qué necesitas hacer?" autocomplete="off" />
-            <select id="taskPriority">
-              <option value="normal">Normal</option>
-              <option value="alta">Alta</option>
-              <option value="baja">Baja</option>
-            </select>
-            <button class="primary">Añadir tarea</button>
-          </form>
-          <div id="taskList" class="task-list full"></div>
-        </article>
-      </section>
-
-      <section id="focus" class="view">
-        <div class="section-title"><div><p class="eyebrow">DEEP WORK</p><h2>Enfoque</h2></div></div>
-        <article class="panel focus-room">
-          <div class="timer-ring" id="timerRing">
-            <div><strong id="timer">25:00</strong><span id="timerMode">FOCUS</span></div>
-          </div>
-          <div class="timer-controls">
-            <button id="timerStart" class="primary">Empezar</button>
-            <button id="timerReset" class="secondary">Reiniciar</button>
-          </div>
-          <div class="preset-row">
-            <button data-minutes="25" class="preset active">25 min</button>
-            <button data-minutes="50" class="preset">50 min</button>
-            <button data-minutes="90" class="preset">90 min</button>
-          </div>
-          <p class="muted center">Sesiones completadas hoy: <strong id="sessionsCount">0</strong></p>
-        </article>
-      </section>
-
-      <section id="notes" class="view">
-        <div class="section-title"><div><p class="eyebrow">PIENSA</p><h2>Notas</h2></div><button id="newNote" class="primary">Nueva nota</button></div>
-        <div id="notesGrid" class="notes-grid"></div>
-      </section>
-
-      <section id="inspire" class="view">
-        <div class="section-title"><div><p class="eyebrow">RECARGA</p><h2>Inspiración</h2></div></div>
-        <article class="panel inspiration-stage">
-          <span class="spark">✦</span>
-          <blockquote id="bigQuote"></blockquote>
-          <p id="quoteAuthor"></p>
-          <button id="shuffleQuote" class="primary">Nueva inspiración</button>
-        </article>
-      </section>
-    </main>
-  </div>
-
-  <div id="toast" class="toast"></div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<section id="tasks" class="view subview"><div class="subglass"><h2>Tareas</h2><p>Gestiona tus prioridades del día.</p><div id="taskListFull" class="task-list full"></div></div></section>
+<section id="focus" class="view subview"><div class="subglass center"><h2>Enfoque</h2><div id="timer" class="big-timer">25:00</div><div class="row"><button id="startTimer">Empezar</button><button id="resetTimer">Reiniciar</button></div></div></section>
+<section id="music" class="view subview"><div class="subglass"><h2>Música</h2><p>Tu rincón para acompañar el foco.</p></div></section>
+<section id="notes" class="view subview"><div class="subglass"><h2>Notas</h2><textarea id="notesBox" placeholder="Escribe algo..."></textarea></div></section>
+<section id="time" class="view subview"><div class="subglass center"><h2>Tiempo</h2><div id="bigClock" class="big-timer"></div></div></section>
+<section id="inspire" class="view subview"><div class="subglass center"><h2>Inspiración</h2><p class="big-quote">“La disciplina te mantiene.”</p></div></section>
+</main></div>
+<script src="app.js"></script><script>lucide.createIcons()</script></body></html>
