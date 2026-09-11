@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>NEXUS — Your day. Your focus. Your rules.</title>
+  <meta name="description" content="NEXUS es tu centro personal para tareas, enfoque, notas e inspiración." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">N</div>
+        <div><strong>NEXUS</strong><span>Your day. Your rules.</span></div>
+      </div>
+
+      <nav id="nav">
+        <button class="nav-item active" data-view="home">⌂ <span>Inicio</span></button>
+        <button class="nav-item" data-view="tasks">✓ <span>Tareas</span></button>
+        <button class="nav-item" data-view="focus">◷ <span>Enfoque</span></button>
+        <button class="nav-item" data-view="notes">✎ <span>Notas</span></button>
+        <button class="nav-item" data-view="inspire">✦ <span>Inspiración</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="mini-status"><span class="dot"></span> Guardado local</div>
+        <button id="themeToggle" class="icon-btn" title="Cambiar apariencia">☼</button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p id="dateLabel" class="eyebrow"></p>
+          <h1 id="greeting">Hola, Alan.</h1>
+          <p class="subtitle">Haz que hoy cuente.</p>
+        </div>
+        <div class="clock-card">
+          <strong id="clock">--:--</strong>
+          <span>Montevideo</span>
+        </div>
+      </header>
+
+      <section id="home" class="view active">
+        <div class="hero-grid">
+          <article class="panel focus-preview">
+            <div class="panel-head">
+              <div><p class="eyebrow">FOCUS SESSION</p><h2 id="focusPreview">25:00</h2></div>
+              <button class="primary small" id="quickFocus">Empezar</button>
+            </div>
+            <div class="progress"><span id="focusProgress"></span></div>
+            <p class="muted">Un bloque. Una tarea. Cero ruido.</p>
+          </article>
+
+          <article class="panel quote-card">
+            <p class="eyebrow">IMPULSO DEL DÍA</p>
+            <blockquote id="quoteText"></blockquote>
+            <button id="newQuote" class="text-btn">Otra frase →</button>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel tasks-card">
+            <div class="panel-head">
+              <div><p class="eyebrow">HOY</p><h3>Prioridades</h3></div>
+              <button class="icon-btn" id="openTaskInput">＋</button>
+            </div>
+            <form id="quickTaskForm" class="quick-add hidden">
+              <input id="quickTaskInput" placeholder="Nueva tarea..." autocomplete="off" />
+              <button class="primary">Añadir</button>
+            </form>
+            <div id="homeTaskList" class="task-list"></div>
+            <button class="text-btn" data-go="tasks">Ver todas →</button>
+          </article>
+
+          <article class="panel stat-card">
+            <p class="eyebrow">PROGRESO</p>
+            <div class="big-stat"><strong id="completionPercent">0%</strong><span>completado</span></div>
+            <div class="progress"><span id="taskProgress"></span></div>
+            <div class="stat-row"><span>Tareas listas</span><strong id="doneCount">0 / 0</strong></div>
+          </article>
+
+          <article class="panel note-preview">
+            <div class="panel-head"><div><p class="eyebrow">CAPTURA RÁPIDA</p><h3>Notas</h3></div><span>✎</span></div>
+            <textarea id="scratchpad" placeholder="Escribe algo antes de olvidarlo..."></textarea>
+            <p class="save-indicator" id="saveIndicator">Guardado automáticamente</p>
+          </article>
+
+          <article class="panel mantra-card">
+            <div class="orb">✦</div>
+            <p>Tu espacio. Tu ritmo.</p>
+            <h3>Haz menos.<br/>Hazlo mejor.</h3>
+          </article>
+        </div>
+      </section>
+
+      <section id="tasks" class="view">
+        <div class="section-title"><div><p class="eyebrow">ORGANIZA</p><h2>Tareas</h2></div><span id="taskSummary"></span></div>
+        <article class="panel">
+          <form id="taskForm" class="task-form">
+            <input id="taskInput" placeholder="¿Qué necesitas hacer?" autocomplete="off" />
+            <select id="taskPriority">
+              <option value="normal">Normal</option>
+              <option value="alta">Alta</option>
+              <option value="baja">Baja</option>
+            </select>
+            <button class="primary">Añadir tarea</button>
+          </form>
+          <div id="taskList" class="task-list full"></div>
+        </article>
+      </section>
+
+      <section id="focus" class="view">
+        <div class="section-title"><div><p class="eyebrow">DEEP WORK</p><h2>Enfoque</h2></div></div>
+        <article class="panel focus-room">
+          <div class="timer-ring" id="timerRing">
+            <div><strong id="timer">25:00</strong><span id="timerMode">FOCUS</span></div>
+          </div>
+          <div class="timer-controls">
+            <button id="timerStart" class="primary">Empezar</button>
+            <button id="timerReset" class="secondary">Reiniciar</button>
+          </div>
+          <div class="preset-row">
+            <button data-minutes="25" class="preset active">25 min</button>
+            <button data-minutes="50" class="preset">50 min</button>
+            <button data-minutes="90" class="preset">90 min</button>
+          </div>
+          <p class="muted center">Sesiones completadas hoy: <strong id="sessionsCount">0</strong></p>
+        </article>
+      </section>
+
+      <section id="notes" class="view">
+        <div class="section-title"><div><p class="eyebrow">PIENSA</p><h2>Notas</h2></div><button id="newNote" class="primary">Nueva nota</button></div>
+        <div id="notesGrid" class="notes-grid"></div>
+      </section>
+
+      <section id="inspire" class="view">
+        <div class="section-title"><div><p class="eyebrow">RECARGA</p><h2>Inspiración</h2></div></div>
+        <article class="panel inspiration-stage">
+          <span class="spark">✦</span>
+          <blockquote id="bigQuote"></blockquote>
+          <p id="quoteAuthor"></p>
+          <button id="shuffleQuote" class="primary">Nueva inspiración</button>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
